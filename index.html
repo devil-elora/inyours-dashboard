@@ -263,6 +263,21 @@ input[type=checkbox]{width:15px;height:15px;accent-color:var(--volt);cursor:poin
     </div>
   </div>
 
+  <!-- 배포 -->
+  <div class="view" id="v-dep">
+    <div class="grid g4" id="depstats"></div>
+    <div class="h2">배포 현황 <span class="sub">— 단계는 직접 바꿀 수 있고, 체크는 저장됩니다</span></div>
+    <div class="tw"><table id="dtable"></table></div>
+    <div class="h2">배포 이력</div>
+    <div class="card" id="dephist"></div>
+    <div class="note">
+      <b>자동감지</b>는 devhub가 스캔할 때 정한 값입니다 —
+      <code>미배포</code> → <code>빌드있음</code>(dist 존재) → <code>설정완료</code>(vercel·wrangler 설정) →
+      <code>배포됨</code>(주소 있음) → <code>살아있음</code>(주소가 실제로 응답).<br>
+      <b>내가 정한 단계</b>를 바꾸면 그 값이 화면에 쓰입니다. 자동감지와 다르면 옆에 표시됩니다.
+    </div>
+  </div>
+
   <!-- 주소 -->
   <div class="view" id="v-link">
     <div class="tw"><table id="ltable"></table></div>
@@ -309,55 +324,55 @@ const BLOCKERS=[
 /* DEVHUB:PROJECTS:BEGIN */
 // 이 블록은 `python devhub.py report` 가 자동으로 다시 씁니다. 직접 고치지 마세요.
 // 고칠 값은 devhub/data/projects.json 에 있습니다.
-// 마지막 갱신: 2026-08-25 03:34 (스캔 2026-08-25 03:31)
+// 마지막 갱신: 2026-08-25 04:05 (스캔 2026-08-25 04:02)
 const P=[
- [1,"yoonreka.app","A","외부","done",0,"완료","없음 (기획·QA 역할)","","","","",0,0,false],
- [2,"MoneyUp","A","개인","done",0,"완료","없음","","","","",0,0,false],
- [3,"Mini App","A","개인","done",0,"완료","없음 — edu-ai-platform의 fork 원본","","","","",0,0,false],
- [4,"Operations","A","개인","done",0,"완료","없음","","","","",0,0,false],
- [5,"발음/어휘 학습 2종","A","개인","done",0,"완료","없음","","","","",0,0,false],
- [6,"vismate.co.kr 정적 14p","A","인유얼스","done",0,"완료","브랜드 표기 교체만 (C-16)","","","","",0,0,false],
- [7,"Calendar / 말하면","A","개인","done",0,"완료","없음 · 커플 스케줄 앱","","","","",0,0,false],
- [8,"가사 생성기 / 작사공방","A","개인","done",0,"완료","없음","https://lyrics-studio-liart.vercel.app","","https://github.com/devil-elora/lyrics-studio","Vercel",2,0,false],
- [9,"개발자 포트폴리오","B","개인","live",0.5,"라이브","이름 표기 통일(Elora/배지윤), Building 설명 보강","https://devil-elora.github.io","","https://github.com/devil-elora/devil-elora.github.io","GitHub Pages",8,8,false],
- [10,"Junan / 응징 대작전","B","개인","live",0.5,"95%","실기기 동작 확인만","https://eungjing-game.pages.dev","","","Cloudflare Pages",0,0,false],
- [11,"무지개 우체국","B","개인","live",0.5,"95%","크론(예약 배달) 설정만","https://rainbow-post.vercel.app","","https://github.com/devil-elora/rainbow-post","Vercel",59,37,false],
- [12,"DBLV","B","별도 회사","live",1.5,"90%","실메일 계정(Cloudflare+Supabase), 일정 공개범위 결정","https://double-level.pages.dev","","https://github.com/devil-elora/dblv-workspace","Cloudflare Pages",15,7,false],
- [36,"진행 관제 대시보드","B","개인","live",0,"라이브","없음 — DevHub가 자동 갱신","https://devil-elora.github.io/inyours-dashboard/","","https://github.com/devil-elora/inyours-dashboard","GitHub Pages",1,1,false],
- [13,"인유얼스 애드팀 MAKER","C","인유얼스","doing",1,"90%","Supabase 이전 3단계, 계정·권한, 사용량 제한, 생성이력","","Gemini 키","https://github.com/devil-elora/inyours-adteam","Vercel",6,6,false],
- [14,"고객 의뢰 접수·응대 사이트","C","인유얼스","doing",2,"90%","폼 확정, 접수 알림, 관제 연동, 자동 회신","https://vismate-project-site.devil-elora.workers.dev/request","","","",0,0,false],
- [15,"직원 근무·실적 자동 레포트","C","인유얼스","doing",2,"85%","메타 API 수집, 열람 권한, 주간 자동 발송","","메타 API","","",0,0,false],
- [16,"브랜드 교체 + 회사 홈페이지","C","인유얼스","doing",1.5,"90%","상호변경등기, 로고·도메인, 14p 표기 교체, 요금 페이지","","","","",0,0,false],
- [17,"사내 관제 시스템","C","인유얼스","doing",3,"80%","진행단계 정의, 담당자 배정, 조교 권한 분리, 작업 로그","https://vismate-project-site.devil-elora.workers.dev","","https://github.com/devil-elora/vismate-project-site","Cloudflare Workers",9,3,false],
- [18,"의뢰업체 자동 분석","C","인유얼스","doing",3,"75%","업종별 분석 로직, MAKER 연결, 리포트 양식, 샘플 3건","","","","",0,0,false],
- [19,"고객 응대 챗봇","C","인유얼스","wait",4,"70%","FAQ, 의뢰서 유도 시나리오, 상담 로그, 임베드","","","","",0,0,false],
- [20,"모의고사 표지 HTML+CSS 조판","D","가윤T","wait",1,"90%","CSS 변수 노출 → 브라우저 확인 → Playwright PDF","","","","",0,0,false],
- [21,"수능 워크북 빌더 (+구문분석 흡수)","D","가윤T","doing",4,"90%","지문 JSON 자동생성, 파라미터화, 검증 자동화, 구문분석 프론트","","","","",0,0,false],
- [22,"국어 기출 검색 (검색 전용)","D","가윤T","doing",3,"80%","기출 적재, 분류 체계, 검색 UI  ※출제 기능 없음","","Supabase","https://github.com/devil-elora/exam-navigator","",9,9,false],
- [23,"실전 모의고사 출제 엔진","D","가윤T","live",4,"80%","기출 변형 Phase1 Step3~6, 옵시디언 UI, 검수 정교화","https://gayun-exam-engine.vercel.app","Gemini 키","https://github.com/devil-elora/gayun-exam-engine","Vercel",108,75,false],
- [34,"HWP→PPT 변환기 (tools)","D","가윤T","live",0,"완료","없음 — make_ppt.py 운영 중","","","","",0,0,false],
- [24,"지원레이더","E","판매용","doing",1,"90%","Supabase 연결, API 키, Vercel 배포","","Supabase","","Vercel",2,2,false],
- [25,"앱 IP 등록 도우미","E","판매용","doing",1.5,"80%","토스페이먼츠 결제 연동, 검수 자동화 마감","","","","",0,0,false],
- [26,"교육용 AI 마켓 (Mini App fork)","E","판매용","doing",3,"75%","입점 구조, 결제·정산, 등록 심사, 판매자 페이지","","","https://github.com/devil-elora/Mini-App","",3,3,false],
- [27,"범용 랜딩페이지 빌더","E","수익화","doing",1.5,"90%","섹션 템플릿 추가, 테마 프리셋, 예시 2종 마감","","","","",0,0,false],
- [35,"DevHub (이 도구)","E","개인","doing",1,"80%","analyzer·reporter 완성, 슬래시 커맨드 연동","","","","",0,0,false],
- [28,"AMPS","F","부업","wait",8,"50%","곡 관리·선별·렌더링, 유튜브 API, 성과 분석","","","","",0,0,false],
- [29,"할 일 관리 앱","F","판매용","wait",20,"35%","모노레포, Supabase, AI 분해, PC앱, 위젯, 결제, 심사","","","","",0,0,false],
- [30,"Score (음악→악보)","G","개인","hold",10,"35%","오디오 분석, 음정·박자 추출, 악보 렌더링","","","https://github.com/devil-elora/music-to-score","",1,0,false],
- [31,"CTA / 내 동네 시티 3D","G","개인","hold",104,"5%","엔진 선택, 3D 에셋, 물리·AI, 최적화, 스팀 심사","","","","",0,0,false],
- [32,"기억해","H","개인","wait",0,"?","무엇을 하는 프로그램인지 확인 — 폴더 못 찾음","","","","",0,0,false],
- [33,"게임 분석","H","개인","wait",0,"?","프로그램인지 일회성 작업인지 확인 — 폴더 못 찾음","","","","",0,0,false],
- [37,"Cursor","I","미분류","wait",0,"?","스캔으로 새로 발견됨 — projects.json 에 분류를 넣으세요","","","","",0,0,false],
- [38,"Homepage","I","미분류","wait",0,"?","스캔으로 새로 발견됨 — projects.json 에 분류를 넣으세요","","","","",0,0,false],
- [39,"KAIE_website_deploy","I","미분류","wait",0,"?","스캔으로 새로 발견됨 — projects.json 에 분류를 넣으세요","","","","",0,0,false],
- [40,"dblv-claude-proxy","I","미분류","wait",0,"?","스캔으로 새로 발견됨 — projects.json 에 분류를 넣으세요","","","https://github.com/devil-elora/dblv-claude-proxy","Vercel",1,1,false],
- [41,"exam-search","I","미분류","wait",0,"?","스캔으로 새로 발견됨 — projects.json 에 분류를 넣으세요","","","","",0,0,false],
- [42,"gpt-question-maker","I","미분류","wait",0,"?","스캔으로 새로 발견됨 — projects.json 에 분류를 넣으세요","","","","",0,0,false],
- [43,"snu-engedu-prep","I","미분류","wait",0,"?","스캔으로 새로 발견됨 — projects.json 에 분류를 넣으세요","","","","",0,0,false],
- [44,"taskflow","I","미분류","wait",0,"?","스캔으로 새로 발견됨 — projects.json 에 분류를 넣으세요","","","","",1,1,false],
- [45,"vismate-internal-repo","I","미분류","wait",0,"?","스캔으로 새로 발견됨 — projects.json 에 분류를 넣으세요","","","","",1,0,false],
- [46,"vismate_homepage","I","미분류","wait",0,"?","스캔으로 새로 발견됨 — projects.json 에 분류를 넣으세요","","","https://github.com/yoonreka-official/vismate_homepage","",1,0,false],
- [47,"비스메이트 회사 내부 홈페이지","I","미분류","wait",0,"?","스캔으로 새로 발견됨 — projects.json 에 분류를 넣으세요","","","","",0,0,false],
+ [1,"yoonreka.app","A","외부","done",0,"완료","없음 (기획·QA 역할)","","","","",0,0,false,"미배포",null,"",null,"",null],
+ [2,"MoneyUp","A","개인","done",0,"완료","없음","","","","",0,0,false,"미배포",null,"",null,"",null],
+ [3,"Mini App","A","개인","done",0,"완료","없음 — edu-ai-platform의 fork 원본","","","","",0,0,false,"미배포",null,"",null,"",null],
+ [4,"Operations","A","개인","done",0,"완료","없음","","","","",0,0,false,"미배포",null,"",null,"",null],
+ [5,"발음/어휘 학습 2종","A","개인","done",0,"완료","없음","","","","",0,0,false,"미배포",null,"",null,"",null],
+ [6,"vismate.co.kr 정적 14p","A","인유얼스","done",0,"완료","브랜드 표기 교체만 (C-16)","","","","",0,0,false,"미배포",null,"",null,"",null],
+ [7,"Calendar / 말하면","A","개인","done",0,"완료","없음 · 커플 스케줄 앱","","","","",0,0,false,"미배포",null,"",null,"",null],
+ [8,"가사 생성기 / 작사공방","A","개인","done",0,"완료","없음","https://lyrics-studio-liart.vercel.app","","https://github.com/devil-elora/lyrics-studio","Vercel",2,0,false,"살아있음",true,"2026-08-25",null,"2026-09-13",18],
+ [9,"개발자 포트폴리오","B","개인","live",0.5,"라이브","이름 표기 통일(Elora/배지윤), Building 설명 보강","https://devil-elora.github.io","","https://github.com/devil-elora/devil-elora.github.io","GitHub Pages",8,8,false,"살아있음",true,"2026-08-25",null,"2026-09-08",0],
+ [10,"Junan / 응징 대작전","B","개인","live",0.5,"95%","실기기 동작 확인만","https://eungjing-game.pages.dev","","","Cloudflare Pages",0,0,false,"살아있음",true,"2026-08-25",null,"2026-09-13",null],
+ [11,"무지개 우체국","B","개인","live",0.5,"95%","크론(예약 배달) 설정만","https://rainbow-post.vercel.app","","https://github.com/devil-elora/rainbow-post","Vercel",59,37,false,"살아있음",true,"2026-08-25",null,"2026-08-30",5],
+ [12,"DBLV","B","별도 회사","live",1.5,"90%","실메일 계정(Cloudflare+Supabase), 일정 공개범위 결정","https://double-level.pages.dev","","https://github.com/devil-elora/dblv-workspace","Cloudflare Pages",15,7,false,"살아있음",true,"2026-08-25",null,"2026-08-30",12],
+ [36,"진행 관제 대시보드","B","개인","live",0,"라이브","없음 — DevHub가 자동 갱신","https://devil-elora.github.io/inyours-dashboard/","","https://github.com/devil-elora/inyours-dashboard","GitHub Pages",2,2,false,"살아있음",true,"2026-08-25",null,"2026-09-13",0],
+ [13,"인유얼스 애드팀 MAKER","C","인유얼스","doing",1,"90%","Supabase 이전 3단계, 계정·권한, 사용량 제한, 생성이력","","Gemini 키","https://github.com/devil-elora/inyours-adteam","Vercel",6,6,false,"설정완료",null,"",null,"2026-09-17",2],
+ [14,"고객 의뢰 접수·응대 사이트","C","인유얼스","doing",2,"90%","폼 확정, 접수 알림, 관제 연동, 자동 회신","https://vismate-project-site.devil-elora.workers.dev/request","","","",0,0,false,"살아있음",null,"",null,"",null],
+ [15,"직원 근무·실적 자동 레포트","C","인유얼스","doing",2,"85%","메타 API 수집, 열람 권한, 주간 자동 발송","","메타 API","","",0,0,false,"미배포",null,"",null,"",null],
+ [16,"브랜드 교체 + 회사 홈페이지","C","인유얼스","doing",1.5,"90%","상호변경등기, 로고·도메인, 14p 표기 교체, 요금 페이지","","","","",0,0,false,"미배포",null,"",null,"",null],
+ [17,"사내 관제 시스템","C","인유얼스","doing",3,"80%","진행단계 정의, 담당자 배정, 조교 권한 분리, 작업 로그","https://vismate-project-site.devil-elora.workers.dev","","https://github.com/devil-elora/vismate-project-site","Cloudflare Workers",9,3,false,"살아있음",true,"2026-08-25",null,"2026-09-08",6],
+ [18,"의뢰업체 자동 분석","C","인유얼스","doing",3,"75%","업종별 분석 로직, MAKER 연결, 리포트 양식, 샘플 3건","","","","",0,0,false,"미배포",null,"",null,"",null],
+ [19,"고객 응대 챗봇","C","인유얼스","wait",4,"70%","FAQ, 의뢰서 유도 시나리오, 상담 로그, 임베드","","","","",0,0,false,"미배포",null,"",null,"",null],
+ [20,"모의고사 표지 HTML+CSS 조판","D","가윤T","wait",1,"90%","CSS 변수 노출 → 브라우저 확인 → Playwright PDF","","","","",0,0,false,"미배포",null,"",null,"",null],
+ [21,"수능 워크북 빌더 (+구문분석 흡수)","D","가윤T","doing",4,"90%","지문 JSON 자동생성, 파라미터화, 검증 자동화, 구문분석 프론트","","","","",0,0,false,"미배포",null,"",null,"2026-11-03",null],
+ [22,"국어 기출 검색 (검색 전용)","D","가윤T","doing",3,"80%","기출 적재, 분류 체계, 검색 UI  ※출제 기능 없음","","Supabase","https://github.com/devil-elora/exam-navigator","",9,9,false,"미배포",null,"",null,"2026-10-11",5],
+ [23,"실전 모의고사 출제 엔진","D","가윤T","live",4,"80%","기출 변형 Phase1 Step3~6, 옵시디언 UI, 검수 정교화","https://gayun-exam-engine.vercel.app","Gemini 키","https://github.com/devil-elora/gayun-exam-engine","Vercel",108,75,false,"살아있음",true,"2026-08-25",null,"2026-08-30",2],
+ [34,"HWP→PPT 변환기 (tools)","D","가윤T","live",0,"완료","없음 — make_ppt.py 운영 중","","","","",0,0,false,"미배포",null,"",null,"2026-10-11",null],
+ [24,"지원레이더","E","판매용","doing",1,"90%","Supabase 연결, API 키, Vercel 배포","","Supabase","","Vercel",2,2,false,"설정완료",null,"",null,"2026-09-08",5],
+ [25,"앱 IP 등록 도우미","E","판매용","doing",1.5,"80%","토스페이먼츠 결제 연동, 검수 자동화 마감","","","","",0,0,false,"빌드있음",null,"",null,"2026-09-17",null],
+ [26,"교육용 AI 마켓 (Mini App fork)","E","판매용","doing",3,"75%","입점 구조, 결제·정산, 등록 심사, 판매자 페이지","","","https://github.com/devil-elora/Mini-App","",3,3,false,"미배포",null,"",null,"2026-10-11",4],
+ [27,"범용 랜딩페이지 빌더","E","수익화","doing",1.5,"90%","섹션 템플릿 추가, 테마 프리셋, 예시 2종 마감","","","","",0,0,false,"빌드있음",null,"",null,"2026-09-17",null],
+ [35,"DevHub (이 도구)","E","개인","doing",1,"80%","analyzer·reporter 완성, 슬래시 커맨드 연동","","","","",1,1,false,"미배포",null,"",null,"2026-11-03",0],
+ [28,"AMPS","F","부업","wait",8,"50%","곡 관리·선별·렌더링, 유튜브 API, 성과 분석","","","","",0,0,false,"미배포",null,"",null,"",null],
+ [29,"할 일 관리 앱","F","판매용","wait",20,"35%","모노레포, Supabase, AI 분해, PC앱, 위젯, 결제, 심사","","","","",0,0,false,"미배포",null,"",null,"",null],
+ [30,"Score (음악→악보)","G","개인","hold",10,"35%","오디오 분석, 음정·박자 추출, 악보 렌더링","","","https://github.com/devil-elora/music-to-score","",1,0,false,"미배포",null,"",null,"2026-11-03",18],
+ [31,"CTA / 내 동네 시티 3D","G","개인","hold",104,"5%","엔진 선택, 3D 에셋, 물리·AI, 최적화, 스팀 심사","","","","",0,0,false,"미배포",null,"",null,"2026-09-08",null],
+ [32,"기억해","H","개인","wait",0,"?","무엇을 하는 프로그램인지 확인 — 폴더 못 찾음","","","","",0,0,false,"미배포",null,"",null,"",null],
+ [33,"게임 분석","H","개인","wait",0,"?","프로그램인지 일회성 작업인지 확인 — 폴더 못 찾음","","","","",0,0,false,"미배포",null,"",null,"",null],
+ [37,"Cursor","I","미분류","wait",0,"?","스캔으로 새로 발견됨 — projects.json 에 분류를 넣으세요","","","","",0,0,false,"미배포",null,"",null,"2026-11-03",null],
+ [38,"Homepage","I","미분류","wait",0,"?","스캔으로 새로 발견됨 — projects.json 에 분류를 넣으세요","","","","",0,0,false,"미배포",null,"",null,"2026-10-11",null],
+ [39,"KAIE_website_deploy","I","미분류","wait",0,"?","스캔으로 새로 발견됨 — projects.json 에 분류를 넣으세요","","","","",0,0,false,"미배포",null,"",null,"2026-10-11",null],
+ [40,"dblv-claude-proxy","I","미분류","wait",0,"?","스캔으로 새로 발견됨 — projects.json 에 분류를 넣으세요","","","https://github.com/devil-elora/dblv-claude-proxy","Vercel",1,1,false,"설정완료",null,"",null,"2026-09-17",0],
+ [41,"exam-search","I","미분류","wait",0,"?","스캔으로 새로 발견됨 — projects.json 에 분류를 넣으세요","","","","",0,0,false,"미배포",null,"",null,"2026-11-03",null],
+ [42,"gpt-question-maker","I","미분류","wait",0,"?","스캔으로 새로 발견됨 — projects.json 에 분류를 넣으세요","","","","",0,0,false,"미배포",null,"",null,"2026-10-11",null],
+ [43,"snu-engedu-prep","I","미분류","wait",0,"?","스캔으로 새로 발견됨 — projects.json 에 분류를 넣으세요","","","","",0,0,false,"미배포",null,"",null,"2026-09-08",null],
+ [44,"taskflow","I","미분류","wait",0,"?","스캔으로 새로 발견됨 — projects.json 에 분류를 넣으세요","","","","",1,1,false,"미배포",null,"",null,"2026-09-06",0],
+ [45,"vismate-internal-repo","I","미분류","wait",0,"?","스캔으로 새로 발견됨 — projects.json 에 분류를 넣으세요","","","","",1,0,false,"설정완료",null,"",null,"2026-09-17",20],
+ [46,"vismate_homepage","I","미분류","wait",0,"?","스캔으로 새로 발견됨 — projects.json 에 분류를 넣으세요","","","https://github.com/yoonreka-official/vismate_homepage","",1,0,false,"미배포",null,"",null,"2026-11-03",48],
+ [47,"비스메이트 회사 내부 홈페이지","I","미분류","wait",0,"?","스캔으로 새로 발견됨 — projects.json 에 분류를 넣으세요","","","","",0,0,false,"미배포",null,"",null,"2026-09-01",null],
 ];
 const PCAT={"A": "배포 완료", "B": "라이브 · 마무리만", "C": "사업 트랙 (인유얼스)", "D": "교재 트랙 (가윤T)", "E": "판매 도구", "F": "기획 · 착수 전", "G": "보류", "H": "정보 미확인", "I": "미분류 · 새로 발견됨"};
 /* DEVHUB:PROJECTS:END */
@@ -482,9 +497,9 @@ let CANSAVE=true;
 try{localStorage.setItem(KEY+"-t","1");localStorage.removeItem(KEY+"-t")}catch(e){CANSAVE=false}
 let S=load();
 function load(){
-  if(!CANSAVE)return{p:{},f:{},pr:{}};
-  try{return JSON.parse(localStorage.getItem(KEY))||{p:{},f:{},pr:{}}}
-  catch(e){return{p:{},f:{},pr:{}}}
+  if(!CANSAVE)return{p:{},f:{},pr:{},dep:{}};
+  try{return Object.assign({p:{},f:{},pr:{},dep:{}},JSON.parse(localStorage.getItem(KEY))||{})}
+  catch(e){return{p:{},f:{},pr:{},dep:{}}}
 }
 function save(){
   if(CANSAVE){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){CANSAVE=false;warnNoSave()}}
@@ -525,13 +540,13 @@ function impJSON(el){
 }
 function resetAll(){
   if(!confirm("체크·상태를 전부 지웁니다. 계속할까요?"))return;
-  S={p:{},f:{},pr:{}}; save(); renderAll(); toast("초기화했습니다");
+  S={p:{},f:{},pr:{},dep:{}}; save(); renderAll(); toast("초기화했습니다");
 }
 
 /* ══════════════════════════════════════════════════════════════
    3) 렌더링
    ══════════════════════════════════════════════════════════════ */
-const TABS=[["dash","대시보드",""],["proj","프로젝트",P.length],["link","주소",""],
+const TABS=[["dash","대시보드",""],["proj","프로젝트",P.length],["dep","배포",""],["link","주소",""],
             ["fund","지원사업",F.length],["unit","신청 단위",6],
             ["prep","준비물",PREP.length],["cal","캘린더",8]];
 document.getElementById("nav").innerHTML=TABS.map((t,i)=>
@@ -644,6 +659,75 @@ function link(u,label){
   return `<span class="mt"><a href="${href}" target="_blank" rel="noopener">${tx}</a></span>`;
 }
 
+
+// ── 배포 탭 ────────────────────────────────────────────────
+const DSTAGE=["미배포","빌드있음","설정완료","배포됨","살아있음"];
+const DCHECK=["도메인 연결","환경변수 등록","HTTPS 확인","크론·예약작업","에러 모니터링","실기기 확인"];
+const dstage=x=>(S.dep[x[1]]&&S.dep[x[1]].stage)||x[15];
+function setDStage(name,v){S.dep[name]=Object.assign({checks:{}},S.dep[name],{stage:v});save();rDep();rDepStats()}
+function setDCheck(name,k,v){
+  const d=S.dep[name]||{checks:{}}; d.checks=Object.assign({},d.checks); d.checks[k]=v;
+  S.dep[name]=d; save(); rDep(); rDepStats();
+}
+
+function rDepStats(){
+  const has=P.filter(x=>x[8]);                       // 주소가 있는 것
+  const alive=P.filter(x=>x[16]===true).length;
+  const dead=P.filter(x=>x[8]&&x[16]===false).length;
+  const ready=P.filter(x=>!x[8]&&(x[15]==="설정완료"||x[15]==="빌드있음")).length;
+  const done=Object.values(S.dep).reduce((n,d)=>n+Object.values(d.checks||{}).filter(Boolean).length,0);
+  const total=has.length*DCHECK.length||1;
+  document.getElementById("depstats").innerHTML=`
+   <div class="card"><h3>살아있는 배포</h3><div class="big">${alive}<small>/ ${has.length}</small></div>
+     ${segbar(Math.round(alive/(has.length||1)*100))}</div>
+   <div class="card"><h3>응답 없음</h3><div class="big" style="color:${dead?"var(--heat)":"var(--tx)"}">${dead}</div>
+     <div class="sub" style="margin-top:7px;color:var(--tx3)">${dead?"주소는 있는데 안 열립니다":"전부 정상"}</div></div>
+   <div class="card"><h3>배포 직전</h3><div class="big">${ready}</div>
+     <div class="sub" style="margin-top:7px;color:var(--tx3)">설정·빌드는 됐고 주소만 없음</div></div>
+   <div class="card"><h3>배포 체크리스트</h3><div class="big">${done}<small>/ ${total}</small></div>
+     ${segbar(Math.round(done/total*100))}</div>`;
+}
+
+function rDep(){
+  const rows=P.filter(x=>x[8]||x[15]!=="미배포").sort((a,b)=>
+    DSTAGE.indexOf(dstage(b))-DSTAGE.indexOf(dstage(a))||a[0]-b[0]);
+  let h=`<tr><th style="width:34px">#</th><th style="width:210px">프로젝트</th>
+     <th style="width:118px">내가 정한 단계</th><th style="width:104px">자동감지</th>
+     <th style="width:74px">응답</th><th style="width:96px">처음 배포</th>
+     <th>배포 체크리스트</th></tr>`;
+  rows.forEach(x=>{
+    const cur=dstage(x), diff=cur!==x[15];
+    const ck=(S.dep[x[1]]&&S.dep[x[1]].checks)||{};
+    const alive=x[16]===true?'<span class="b live">200 OK</span>'
+              :x[16]===false?'<span class="b no">응답없음</span>'
+              :'<span style="color:var(--tx3)">—</span>';
+    h+=`<tr><td style="color:var(--tx3)">${x[0]}</td>
+      <td><span class="nm">${x[1]}</span>${link(x[8])}</td>
+      <td><select onchange="setDStage('${esc(x[1])}',this.value)">
+        ${DSTAGE.map(d=>`<option value="${d}"${cur===d?" selected":""}>${d}</option>`).join("")}
+      </select></td>
+      <td>${diff?`<span class="b wait">${x[15]}</span>`:`<span style="color:var(--tx3);font-size:11px">${x[15]}</span>`}</td>
+      <td>${alive}</td>
+      <td class="num" style="font-size:11px">${x[17]||"—"}</td>
+      <td>${DCHECK.map(k=>`<label style="display:inline-flex;align-items:center;gap:5px;
+          margin:0 12px 4px 0;font-size:11px;color:var(--tx2);cursor:pointer">
+          <input type="checkbox" ${ck[k]?"checked":""}
+            onchange="setDCheck('${esc(x[1])}','${k}',this.checked)">${k}</label>`).join("")}</td></tr>`;
+  });
+  document.getElementById("dtable").innerHTML=h;
+
+  const hist=P.filter(x=>x[17]).sort((a,b)=>a[17]<b[17]?1:-1);
+  document.getElementById("dephist").innerHTML= hist.length
+   ? hist.map(x=>`<div style="display:flex;gap:14px;padding:8px 0;
+        border-bottom:1px solid var(--line);font-size:12.5px">
+        <span class="num" style="width:92px;color:var(--volt)">${x[17]}</span>
+        <span class="nm" style="flex:1">${x[1]}</span>
+        <span style="color:var(--tx3);font-size:11px">${x[11]||""}</span></div>`).join("")
+   : '<div style="color:var(--tx3);font-size:12px">아직 이력이 없습니다. '
+     +'<code>python devhub.py scan</code> 을 돌릴 때마다 배포 상태가 바뀌면 여기 쌓입니다.</div>';
+}
+const esc=s=>String(s).replace(/\/g,"\\\\").replace(/'/g,"\'");
+
 // ── 주소 탭 — 들어가볼 수 있는 곳만 모아서 보여준다
 function rLinks(){
   const live=P.filter(x=>x[8]), nolive=P.filter(x=>!x[8]&&x[10]);
@@ -753,7 +837,7 @@ function rCal(){
    </div>`).join("");
 }
 
-function renderAll(){rBlockers();rStats();rMonth();rQuick();rProj();rLinks();rFund();rUnits();rPrep();rCal()}
+function renderAll(){rBlockers();rStats();rMonth();rQuick();rProj();rDepStats();rDep();rLinks();rFund();rUnits();rPrep();rCal()}
 renderAll(); stamp();
 if(!CANSAVE) warnNoSave();   // 저장이 처음부터 막힌 환경이면 바로 알려준다
 </script>
