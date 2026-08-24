@@ -664,10 +664,11 @@ function link(u,label){
 const DSTAGE=["미배포","빌드있음","설정완료","배포됨","살아있음"];
 const DCHECK=["도메인 연결","환경변수 등록","HTTPS 확인","크론·예약작업","에러 모니터링","실기기 확인"];
 const dstage=x=>(S.dep[x[1]]&&S.dep[x[1]].stage)||x[15];
-function setDStage(name,v){S.dep[name]=Object.assign({checks:{}},S.dep[name],{stage:v});save();rDep();rDepStats()}
-function setDCheck(name,k,v){
-  const d=S.dep[name]||{checks:{}}; d.checks=Object.assign({},d.checks); d.checks[k]=v;
-  S.dep[name]=d; save(); rDep(); rDepStats();
+const pname=id=>{const r=P.find(x=>x[0]===id);return r?r[1]:String(id)};
+function setDStage(id,v){const n=pname(id);S.dep[n]=Object.assign({checks:{}},S.dep[n],{stage:v});save();rDep();rDepStats()}
+function setDCheck(id,i,v){const n=pname(id);
+  const d=S.dep[n]||{checks:{}}; d.checks=Object.assign({},d.checks); d.checks[DCHECK[i]]=v;
+  S.dep[n]=d; save(); rDep(); rDepStats();
 }
 
 function rDepStats(){
@@ -703,16 +704,16 @@ function rDep(){
               :'<span style="color:var(--tx3)">—</span>';
     h+=`<tr><td style="color:var(--tx3)">${x[0]}</td>
       <td><span class="nm">${x[1]}</span>${link(x[8])}</td>
-      <td><select onchange="setDStage('${esc(x[1])}',this.value)">
+      <td><select onchange="setDStage(${x[0]},this.value)">
         ${DSTAGE.map(d=>`<option value="${d}"${cur===d?" selected":""}>${d}</option>`).join("")}
       </select></td>
       <td>${diff?`<span class="b wait">${x[15]}</span>`:`<span style="color:var(--tx3);font-size:11px">${x[15]}</span>`}</td>
       <td>${alive}</td>
       <td class="num" style="font-size:11px">${x[17]||"—"}</td>
-      <td>${DCHECK.map(k=>`<label style="display:inline-flex;align-items:center;gap:5px;
+      <td>${DCHECK.map((k,i)=>`<label style="display:inline-flex;align-items:center;gap:5px;
           margin:0 12px 4px 0;font-size:11px;color:var(--tx2);cursor:pointer">
           <input type="checkbox" ${ck[k]?"checked":""}
-            onchange="setDCheck('${esc(x[1])}','${k}',this.checked)">${k}</label>`).join("")}</td></tr>`;
+            onchange="setDCheck(${x[0]},${i},this.checked)">${k}</label>`).join("")}</td></tr>`;
   });
   document.getElementById("dtable").innerHTML=h;
 
@@ -726,7 +727,6 @@ function rDep(){
    : '<div style="color:var(--tx3);font-size:12px">아직 이력이 없습니다. '
      +'<code>python devhub.py scan</code> 을 돌릴 때마다 배포 상태가 바뀌면 여기 쌓입니다.</div>';
 }
-const esc=s=>String(s).replace(/\/g,"\\\\").replace(/'/g,"\'");
 
 // ── 주소 탭 — 들어가볼 수 있는 곳만 모아서 보여준다
 function rLinks(){
