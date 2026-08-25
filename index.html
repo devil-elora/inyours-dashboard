@@ -278,6 +278,32 @@ input[type=checkbox]{width:15px;height:15px;accent-color:var(--volt);cursor:poin
     </div>
   </div>
 
+  <!-- 수익 -->
+  <div class="view" id="v-biz">
+    <div class="grid g4" id="bizstats"></div>
+    <div class="h2">프로젝트별 수익·비용 <span class="sub">— 금액을 직접 입력하면 저장됩니다 (원 단위)</span></div>
+    <div class="fil" id="bfil"></div>
+    <div class="tw"><table id="btable"></table></div>
+    <div class="note">
+      <b>매출·유지비는 제가 알 수 없어 0으로 두었습니다.</b> 아는 것부터 채우세요.<br>
+      입력한 값은 이 브라우저에 저장됩니다. 영구히 남기려면 <b>내보내기</b> 한 뒤
+      <code>devhub/data/projects.json</code> 의 <code>biz</code> 에 옮겨 적으십시오 — 그래야 문서에도 반영됩니다.
+    </div>
+  </div>
+
+  <!-- 환경 -->
+  <div class="view" id="v-env">
+    <div class="h2">계정 대장 <span class="sub">— 이 계정이 막히면 무엇이 멈추는지</span></div>
+    <div class="tw"><table id="acctable"></table></div>
+    <div class="h2">프로젝트별 실행 환경</div>
+    <div class="tw"><table id="etable"></table></div>
+    <div class="note">
+      플랫폼·언어·깃헙 계정은 <b>devhub 가 스캔할 때 자동</b>으로 읽습니다.
+      DB·AI·호스팅 계정은 코드에서 알 수 없어 사람이 채웁니다 —
+      <code>devhub/data/projects.json</code> 의 <code>env</code> 와 <code>accounts</code>.
+    </div>
+  </div>
+
   <!-- 주소 -->
   <div class="view" id="v-link">
     <div class="tw"><table id="ltable"></table></div>
@@ -324,50 +350,51 @@ const BLOCKERS=[
 /* DEVHUB:PROJECTS:BEGIN */
 // 이 블록은 `python devhub.py report` 가 자동으로 다시 씁니다. 직접 고치지 마세요.
 // 고칠 값은 devhub/data/projects.json 에 있습니다.
-// 마지막 갱신: 2026-08-25 20:47 (스캔 2026-08-25 20:26)
+// 마지막 갱신: 2026-08-25 21:00 (스캔 2026-08-25 20:26)
 const P=[
- [1,"yoonreka.app","A","외부","done",0,"완료","없음 (기획·QA 역할)","","","","",0,0,false,"미배포",null,"",null,"",null],
- [2,"MoneyUp","A","개인","done",0,"완료","없음","","","","",0,0,false,"미배포",null,"",null,"",null],
- [3,"Mini App","A","개인","done",0,"완료","없음 — edu-ai-platform의 fork 원본","","","","",0,0,false,"미배포",null,"",null,"",null],
- [4,"Operations","A","개인","done",0,"완료","없음","","","","",0,0,false,"미배포",null,"",null,"",null],
- [5,"발음/어휘 학습 2종","A","개인","done",0,"완료","없음","","","","",0,0,false,"미배포",null,"",null,"",null],
- [6,"vismate.co.kr 정적 14p","A","애드팀인","done",0,"완료","브랜드 표기 교체만 (C-16)","","","","",0,0,false,"미배포",null,"",null,"",null],
- [7,"Calendar / 말하면","A","개인","done",0,"완료","없음 · 커플 스케줄 앱","","","","",0,0,false,"미배포",null,"",null,"",null],
- [8,"가사 생성기 / 작사공방","A","개인","done",0,"완료","없음","https://lyrics-studio-liart.vercel.app","","https://github.com/devil-elora/lyrics-studio","Vercel",2,0,false,"살아있음",true,"2026-08-25",98,"2026-08-25",18],
- [9,"개발자 포트폴리오","B","개인","live",0.5,"라이브","이름 표기 통일(Elora/배지윤), Building 설명 보강","https://devil-elora.github.io","","https://github.com/devil-elora/devil-elora.github.io","GitHub Pages",8,8,false,"살아있음",true,"2026-08-25",90,"2026-09-01",0],
- [10,"Junan / 응징 대작전","B","개인","live",0.5,"95%","실기기 동작 확인만","https://eungjing-game.pages.dev","","","Cloudflare Pages",0,0,false,"살아있음",true,"2026-08-25",92,"2026-09-01",null],
- [11,"무지개 우체국","B","개인","live",0.5,"95%","크론(예약 배달) 설정만","https://rainbow-post.vercel.app","","https://github.com/devil-elora/rainbow-post","Vercel",59,29,false,"살아있음",true,"2026-08-25",92,"2026-09-01",5],
- [12,"DBLV","B","별도 회사","live",1.5,"90%","실메일 계정(Cloudflare+Supabase), 일정 공개범위 결정","https://double-level.pages.dev","","https://github.com/devil-elora/dblv-workspace","Cloudflare Pages",15,3,false,"살아있음",true,"2026-08-25",80,"2026-09-15",12],
- [36,"진행 관제 대시보드","B","개인","live",0,"라이브","없음 — DevHub가 자동 갱신","https://devil-elora.github.io/inyours-dashboard/","","https://github.com/devil-elora/inyours-dashboard","GitHub Pages",7,7,false,"살아있음",true,"2026-08-25",95,"2026-08-27",0],
- [37,"DBLV Claude 프록시","B","별도 회사","live",0,"완료","없음 — 홍콩 403 우회용 미국 리전 프록시","","","https://github.com/devil-elora/dblv-claude-proxy","Vercel",1,1,false,"설정완료",null,"",85,"2026-08-27",0],
- [13,"팀인 마케팅팀 (AD TEAMIN)","C","애드팀인","doing",1,"90%","Supabase 이전 3단계, 계정·권한 분리, 사용량 제한, 생성이력 저장. 2026-08-25 브랜드 변경·저장소 개명 완료 (devil-elora/ad-teamin)","","Gemini 키","https://github.com/devil-elora/ad-teamin","Vercel",8,8,false,"설정완료",null,"",82,"2026-09-08",0],
- [14,"고객 의뢰 접수·응대 사이트","C","애드팀인","doing",2,"90%","폼 확정, 접수 알림, 관제 연동, 자동 회신","https://vismate-project-site.devil-elora.workers.dev/request","","","",0,0,false,"살아있음",null,"",null,"",null],
- [15,"직원 근무·실적 자동 레포트","C","애드팀인","doing",2,"85%","메타 API 수집, 열람 권한, 주간 자동 발송","","메타 API","","",0,0,false,"미배포",null,"",null,"",null],
- [16,"브랜드 교체 + 회사 홈페이지 (AD TEAMIN)","C","애드팀인","doing",4,"90%","새 도메인 구매 확정 후 한 번에 진행. 반쪽만 바꾸면 주소가 갈라져 더 헷갈림. 체크리스트: 도메인 구매/DNS, 저장소 3개 개명, Cloudflare 워커 개명, 14p 표기 교체, 소개·요금 페이지, 상호변경등기 서류 재작성, 메타 도메인 재인증","","새 도메인 미구매","","",0,0,false,"미배포",null,"",null,"",null],
- [17,"사내 관제 시스템","C","애드팀인","doing",3,"80%","진행단계 정의, 담당자 배정, 조교 권한 분리, 작업 로그","https://vismate-project-site.devil-elora.workers.dev","","https://github.com/devil-elora/vismate-project-site","Cloudflare Workers",9,3,false,"살아있음",true,"2026-08-25",65,"2026-10-06",6],
- [18,"의뢰업체 자동 분석","C","애드팀인","doing",3,"75%","업종별 분석 로직, MAKER 연결, 리포트 양식, 샘플 3건","","","","",0,0,false,"미배포",null,"",null,"",null],
- [19,"고객 응대 챗봇","C","애드팀인","wait",4,"70%","FAQ, 의뢰서 유도 시나리오, 상담 로그, 임베드","","","","",0,0,false,"미배포",null,"",null,"",null],
- [40,"계약서 자동 작성 프로그램","C","애드팀인","doing",0,"75%","사내 배포용. 조항을 낱개로 쪼개 DB에 넣고 계약 종류별로 조합해 생성하는 구조. 양식을 통째로 복사하는 방식이 아니라 조항 단위라 특약·개정 관리가 된다. Phase 1(조항 DB) 진행 중","","","","",0,0,false,"미배포",null,"",null,"",null],
- [20,"모의고사 표지 HTML+CSS 조판","D","가윤T","wait",1,"90%","CSS 변수 노출 → 브라우저 확인 → Playwright PDF","","","","",0,0,false,"미배포",null,"",null,"",null],
- [21,"수능 워크북 빌더 (+구문분석 흡수)","D","가윤T","doing",4,"90%","지문 JSON 자동생성, 파라미터화, 검증 자동화, 구문분석 프론트","","","","",0,0,false,"미배포",null,"",70,"2026-10-20",null],
- [22,"기출 검색·제작 시스템 (국어 → 영어)","D","가윤T","doing",12,"80%","★1단계 국어 완성 먼저 → 2단계 영어 확장. 국어: 기출 적재·분류 체계·검색 UI·자료함/문제집 제작. 영어: exam-search의 PDF·OCR 앞단 흡수 + 영어 파서 + 데이터 적재","","Supabase","https://github.com/devil-elora/exam-navigator","",9,9,false,"미배포",null,"",65,"2026-11-17",5],
- [23,"실전 모의고사 출제 엔진","D","가윤T","live",4,"80%","기출 변형 Phase1 Step3~6, 옵시디언 UI, 검수 정교화","https://gayun-exam-engine.vercel.app","Gemini 키","https://github.com/devil-elora/gayun-exam-engine","Vercel",108,75,false,"살아있음",true,"2026-08-25",80,"2026-10-20",2],
- [34,"HWP→PPT 변환기 (tools)","D","가윤T","live",0,"완료","없음 — make_ppt.py 운영 중","","","","",0,0,false,"미배포",null,"",95,"2026-08-25",null],
- [39,"└ exam-search (PDF·OCR 앞단 — 흡수 예정)","D","가윤T","wait",0,"—","독립 항목 아님. 2단계(영어)에서 extract.py 271줄 + ocr.py 111줄을 기출 검색 시스템에 흡수. 2026-07 고3 국어 문제지·해설지로 검증 완료된 코드","","","","",0,0,false,"미배포",null,"",60,"2026-08-25",null],
- [24,"지원레이더","E","판매용","doing",1,"90%","Supabase 연결, API 키, Vercel 배포","","Supabase","","Vercel",2,2,false,"설정완료",null,"",85,"2026-09-08",5],
- [25,"앱 IP 등록 도우미","E","판매용","doing",1.5,"80%","토스페이먼츠 결제 연동, 검수 자동화 마감","","","","",0,0,false,"빌드있음",null,"",75,"2026-09-15",null],
- [26,"교육용 AI 마켓 (Mini App fork)","E","판매용","doing",3,"75%","입점 구조, 결제·정산, 등록 심사, 판매자 페이지","","","https://github.com/devil-elora/Mini-App","",3,3,false,"미배포",null,"",70,"2026-10-06",4],
- [27,"범용 랜딩페이지 빌더","E","수익화","doing",1.5,"90%","섹션 템플릿 추가, 테마 프리셋, 예시 2종 마감","","","","",0,0,false,"빌드있음",null,"",60,"2026-09-15",null],
- [35,"DevHub (이 도구)","E","개인","doing",1,"80%","analyzer·reporter 완성, 슬래시 커맨드 연동","https://devil-elora.github.io/inyours-dashboard/","","","GitHub Pages",6,6,false,"살아있음",true,"2026-08-25",85,"2026-08-30",0],
- [38,"서울대 영어교육과 대학원 준비실","E","개인","doing",1,"80%","개념카드 135장·간격반복·6단계 로드맵 구현됨. 배포만 남음","","","","",0,0,false,"미배포",null,"",70,"2026-09-08",null],
- [28,"AMPS","F","부업","wait",8,"50%","곡 관리·선별·렌더링, 유튜브 API, 성과 분석","","","","",0,0,false,"미배포",null,"",null,"",null],
- [29,"할 일 관리 앱","F","판매용 (보류)","wait",18,"40%","일정에만 등록. 착수하지 않음. Phase 1(뼈대 3화면·276줄) 완료 · Phase 2~6 남음 (Supabase+RLS / AI 분해 Edge Function / 일정배치·알림 / RevenueCat 결제 / 스토어 출시)","","착수 보류","","",1,1,false,"미배포",null,"",15,"2027-03-11",0],
- [30,"Score (음악→악보)","G","개인","hold",10,"35%","오디오 분석, 음정·박자 추출, 악보 렌더링","","","https://github.com/devil-elora/music-to-score","",1,0,false,"미배포",null,"",25,"2027-01-12",18],
- [31,"CTA / 내 동네 시티 3D","G","개인","hold",104,"5%","엔진 선택, 3D 에셋, 물리·AI, 최적화, 스팀 심사","","","","",0,0,false,"미배포",null,"",20,"2026-11-03",null],
- [32,"기억해","H","개인","wait",0,"?","무엇을 하는 프로그램인지 확인 — 폴더 못 찾음","","","","",0,0,false,"미배포",null,"",null,"",null],
- [33,"게임 분석","H","개인","wait",0,"?","프로그램인지 일회성 작업인지 확인 — 폴더 못 찾음","","","","",0,0,false,"미배포",null,"",null,"",null],
+ [1,"yoonreka.app","A","외부","done",0,"완료","없음 (기획·QA 역할)","","","","",0,0,false,"미배포",null,"",null,"",null,"출시함","외주",0,0,"외부 개발물 · 기획/QA 역할. 인프라 비용 부담 없음","미확인","미확인","미확인","미확인",""],
+ [2,"MoneyUp","A","개인","done",0,"완료","없음","","","","",0,0,false,"미배포",null,"",null,"",null,"출시함","미정",0,0,"배포 완료. 수익 모델·매출 확인 필요","미확인","미확인","미확인","미확인",""],
+ [3,"Mini App","A","개인","done",0,"완료","없음 — edu-ai-platform의 fork 원본","","","","",0,0,false,"미배포",null,"",null,"",null,"출시함","단건판매",0,0,"웹앱 코드 거래 마켓. 수수료 구조·매출 확인 필요","미확인","미확인","미확인","미확인",""],
+ [4,"Operations","A","개인","done",0,"완료","없음","","","","",0,0,false,"미배포",null,"",null,"",null,"출시함","미정",0,0,"프리랜서 강사 운영 도구. 수익 모델 확인 필요","미확인","미확인","미확인","미확인",""],
+ [5,"발음/어휘 학습 2종","A","개인","done",0,"완료","없음","","","","",0,0,false,"미배포",null,"",null,"",null,"출시함","무료",0,0,"러버블 호스팅","미확인","미확인","미확인","미확인",""],
+ [6,"vismate.co.kr 정적 14p","A","애드팀인","done",0,"완료","브랜드 표기 교체만 (C-16)","","","","",0,0,false,"미배포",null,"",null,"",null,"출시함","사내용",0,1700,"도메인 vismate.co.kr 연 2만원 상당 · GitHub Pages 무료","미확인","미확인","미확인","미확인",""],
+ [7,"Calendar / 말하면","A","개인","done",0,"완료","없음 · 커플 스케줄 앱","","","","",0,0,false,"미배포",null,"",null,"",null,"미확인","무료",0,0,"Vercel + Supabase 무료 티어","미확인","Supabase","없음","미확인","러버블에서 독립 완료"],
+ [8,"가사 생성기 / 작사공방","A","개인","done",0,"완료","없음","https://lyrics-studio-liart.vercel.app","","https://github.com/devil-elora/lyrics-studio","Vercel",2,0,false,"살아있음",true,"2026-08-25",98,"2026-08-25",18,"미확인","무료",0,0,"단일 HTML · BYOK · 유지비 0","JavaScript / HTML","없음","BYOK(Claude)","-","단일 HTML"],
+ [9,"개발자 포트폴리오","B","개인","live",0.5,"라이브","이름 표기 통일(Elora/배지윤), Building 설명 보강","https://devil-elora.github.io","","https://github.com/devil-elora/devil-elora.github.io","GitHub Pages",8,8,false,"살아있음",true,"2026-08-25",90,"2026-09-01",0,"미확인","무료",0,0,"GitHub Pages 무료","HTML","미확인","미확인","미확인",""],
+ [10,"Junan / 응징 대작전","B","개인","live",0.5,"95%","실기기 동작 확인만","https://eungjing-game.pages.dev","","","Cloudflare Pages",0,0,false,"살아있음",true,"2026-08-25",92,"2026-09-01",null,"미확인","무료",0,0,"Cloudflare Pages · P2P라 서버 없음 · 유지비 0원 확인됨","JavaScript / HTML / CSS","없음","없음","-","P2P라 서버 없음"],
+ [11,"무지개 우체국","B","개인","live",0.5,"95%","크론(예약 배달) 설정만","https://rainbow-post.vercel.app","","https://github.com/devil-elora/rainbow-post","Vercel",59,29,false,"살아있음",true,"2026-08-25",92,"2026-09-01",5,"미확인","미정",0,0,"Vercel + Supabase 무료 · Gemini 종량 · 수익 모델 미정","TypeScript / React+TS / CSS","Supabase","Gemini","yoonreka",""],
+ [12,"DBLV","B","별도 회사","live",1.5,"90%","실메일 계정(Cloudflare+Supabase), 일정 공개범위 결정","https://double-level.pages.dev","","https://github.com/devil-elora/dblv-workspace","Cloudflare Pages",15,3,false,"살아있음",true,"2026-08-25",80,"2026-09-15",12,"미확인","사내용",0,0,"별도 회사 사내툴 · Cloudflare + Supabase 무료 티어","JavaScript / HTML / CSS","Supabase","Claude(프록시 경유)","미확인","실메일 계정 대기"],
+ [36,"진행 관제 대시보드","B","개인","live",0,"라이브","없음 — DevHub가 자동 갱신","https://devil-elora.github.io/inyours-dashboard/","","https://github.com/devil-elora/inyours-dashboard","GitHub Pages",7,7,false,"살아있음",true,"2026-08-25",95,"2026-08-27",0,"해당없음","사내용",0,0,"GitHub Pages 무료 · 단일 HTML","HTML","localStorage","없음","-","단일 HTML"],
+ [37,"DBLV Claude 프록시","B","별도 회사","live",0,"완료","없음 — 홍콩 403 우회용 미국 리전 프록시","","","https://github.com/devil-elora/dblv-claude-proxy","Vercel",1,1,false,"설정완료",null,"",85,"2026-08-27",0,"해당없음","사내용",0,0,"Vercel 무료 · Anthropic 종량(DBLV가 부담)","JavaScript","없음","Claude","미확인","홍콩 403 우회용 미국 리전"],
+ [13,"팀인 마케팅팀 (AD TEAMIN)","C","애드팀인","doing",1,"90%","Supabase 이전 3단계, 계정·권한 분리, 사용량 제한, 생성이력 저장. 2026-08-25 브랜드 변경·저장소 개명 완료 (devil-elora/ad-teamin)","","Gemini 키","https://github.com/devil-elora/ad-teamin","Vercel",8,8,false,"설정완료",null,"",82,"2026-09-08",0,"미확인","구독",0,0,"Vercel 무료 티어 · Gemini API 종량(현재 결제 차단) · 구독제 요금 페이지 예정","React+TS / TypeScript / JavaScript","Supabase(이전 예정)","Gemini","미확인","cloudflare 프리셋 금지 - 홍콩 리전이라 Gemini 차단"],
+ [14,"고객 의뢰 접수·응대 사이트","C","애드팀인","doing",2,"90%","폼 확정, 접수 알림, 관제 연동, 자동 회신","https://vismate-project-site.devil-elora.workers.dev/request","","","",0,0,false,"살아있음",null,"",null,"",null,"해당없음","사내용",0,0,"사내 관제에 포함","미확인","미확인","미확인","미확인",""],
+ [15,"직원 근무·실적 자동 레포트","C","애드팀인","doing",2,"85%","메타 API 수집, 열람 권한, 주간 자동 발송","","메타 API","","",0,0,false,"미배포",null,"",null,"",null,"해당없음","사내용",0,0,"메타 광고 API 무료","미확인","미확인","미확인","미확인",""],
+ [16,"브랜드 교체 + 회사 홈페이지 (AD TEAMIN)","C","애드팀인","doing",4,"90%","새 도메인 구매 확정 후 한 번에 진행. 반쪽만 바꾸면 주소가 갈라져 더 헷갈림. 체크리스트: 도메인 구매/DNS, 저장소 3개 개명, Cloudflare 워커 개명, 14p 표기 교체, 소개·요금 페이지, 상호변경등기 서류 재작성, 메타 도메인 재인증","","새 도메인 미구매","","",0,0,false,"미배포",null,"",null,"",null,"해당없음","사내용",0,0,"새 도메인 구매 시 연 비용 발생","미확인","미확인","미확인","미확인",""],
+ [17,"사내 관제 시스템","C","애드팀인","doing",3,"80%","진행단계 정의, 담당자 배정, 조교 권한 분리, 작업 로그","https://vismate-project-site.devil-elora.workers.dev","","https://github.com/devil-elora/vismate-project-site","Cloudflare Workers",9,3,false,"살아있음",true,"2026-08-25",65,"2026-10-06",6,"해당없음","사내용",0,0,"Cloudflare Workers 무료 티어 · Supabase 무료 티어","JavaScript / React / HTML","Supabase","없음","미확인",""],
+ [18,"의뢰업체 자동 분석","C","애드팀인","doing",3,"75%","업종별 분석 로직, MAKER 연결, 리포트 양식, 샘플 3건","","","","",0,0,false,"미배포",null,"",null,"",null,"미확인","사내용",0,0,"러버블 호스팅 · 영업 도구","미확인","미확인","미확인","미확인",""],
+ [19,"고객 응대 챗봇","C","애드팀인","wait",4,"70%","FAQ, 의뢰서 유도 시나리오, 상담 로그, 임베드","","","","",0,0,false,"미배포",null,"",null,"",null,"미확인","사내용",0,0,"AI 종량 비용 발생 예정","미확인","미확인","미확인","미확인",""],
+ [40,"계약서 자동 작성 프로그램","C","애드팀인","doing",0,"75%","사내 배포용. 조항을 낱개로 쪼개 DB에 넣고 계약 종류별로 조합해 생성하는 구조. 양식을 통째로 복사하는 방식이 아니라 조항 단위라 특약·개정 관리가 된다. Phase 1(조항 DB) 진행 중","","","","",0,0,false,"미배포",null,"",null,"",null,"해당없음","사내용",0,0,"사내 배포용","미확인","미확인","미확인","미확인",""],
+ [20,"모의고사 표지 HTML+CSS 조판","D","가윤T","wait",1,"90%","CSS 변수 노출 → 브라우저 확인 → Playwright PDF","","","","",0,0,false,"미배포",null,"",null,"",null,"미확인","사내용",0,0,"로컬 실행","미확인","미확인","미확인","미확인",""],
+ [21,"수능 워크북 빌더 (+구문분석 흡수)","D","가윤T","doing",4,"90%","지문 JSON 자동생성, 파라미터화, 검증 자동화, 구문분석 프론트","","","","",0,0,false,"미배포",null,"",70,"2026-10-20",null,"미확인","사내용",0,0,"로컬 실행 · 본업 시간 절감이 실질 수익","Python / JavaScript","미확인","미확인","미확인",""],
+ [22,"기출 검색·제작 시스템 (국어 → 영어)","D","가윤T","doing",12,"80%","★1단계 국어 완성 먼저 → 2단계 영어 확장. 국어: 기출 적재·분류 체계·검색 UI·자료함/문제집 제작. 영어: exam-search의 PDF·OCR 앞단 흡수 + 영어 파서 + 데이터 적재","","Supabase","https://github.com/devil-elora/exam-navigator","",9,9,false,"미배포",null,"",65,"2026-11-17",5,"미확인","사내용",0,0,"Supabase 무료 티어 예정","React+TS / TypeScript / Python","Supabase(예정)","없음","미확인","SQL은 supabase/sql/ 수동 실행"],
+ [23,"실전 모의고사 출제 엔진","D","가윤T","live",4,"80%","기출 변형 Phase1 Step3~6, 옵시디언 UI, 검수 정교화","https://gayun-exam-engine.vercel.app","Gemini 키","https://github.com/devil-elora/gayun-exam-engine","Vercel",108,75,false,"살아있음",true,"2026-08-25",80,"2026-10-20",2,"미확인","사내용",0,0,"Vercel 무료 · Gemini 종량(결제 차단) · 출제진 전용","Python / JavaScript / HTML","없음","Gemini","-","Gemini 키 403 상태"],
+ [34,"HWP→PPT 변환기 (tools)","D","가윤T","live",0,"완료","없음 — make_ppt.py 운영 중","","","","",0,0,false,"미배포",null,"",95,"2026-08-25",null,"해당없음","사내용",0,0,"로컬 실행","Python","미확인","미확인","미확인",""],
+ [39,"└ exam-search (PDF·OCR 앞단 — 흡수 예정)","D","가윤T","wait",0,"—","독립 항목 아님. 2단계(영어)에서 extract.py 271줄 + ocr.py 111줄을 기출 검색 시스템에 흡수. 2026-07 고3 국어 문제지·해설지로 검증 완료된 코드","","","","",0,0,false,"미배포",null,"",60,"2026-08-25",null,"미확인","미정",0,0,"","Python / JavaScript / HTML","미확인","미확인","미확인",""],
+ [24,"지원레이더","E","판매용","doing",1,"90%","Supabase 연결, API 키, Vercel 배포","","Supabase","","Vercel",2,2,false,"설정완료",null,"",85,"2026-09-08",5,"미확인","구독",0,0,"검색 무료 + AI는 BYOK(사용자 키) · 서버 AI 비용 0 · Supabase/Vercel 무료 티어","JavaScript / React / HTML","Supabase(예정)","BYOK(사용자 키)","미확인","서버에 AI 키를 두지 않는다"],
+ [25,"앱 IP 등록 도우미","E","판매용","doing",1.5,"80%","토스페이먼츠 결제 연동, 검수 자동화 마감","","","","",0,0,false,"빌드있음",null,"",75,"2026-09-15",null,"미확인","단건판매",0,0,"토스페이먼츠 결제 예정 · PG 수수료 발생","HTML / Python / JavaScript","없음","없음","-","토스페이먼츠 예정"],
+ [26,"교육용 AI 마켓 (Mini App fork)","E","판매용","doing",3,"75%","입점 구조, 결제·정산, 등록 심사, 판매자 페이지","","","https://github.com/devil-elora/Mini-App","",3,3,false,"미배포",null,"",70,"2026-10-06",4,"미확인","구독",0,0,"입점 수수료 구조 미확정","React+TS / TypeScript / JavaScript","Supabase","Gemini","미확인","NITRO_PRESET cloudflare 금지"],
+ [27,"범용 랜딩페이지 빌더","E","수익화","doing",1.5,"90%","섹션 템플릿 추가, 테마 프리셋, 예시 2종 마감","","","","",0,0,false,"빌드있음",null,"",60,"2026-09-15",null,"미확인","외주",0,0,"납품 도구 · 정적 산출물이라 유지비 0","CSS / HTML / JavaScript","미확인","미확인","미확인",""],
+ [35,"DevHub (이 도구)","E","개인","doing",1,"80%","analyzer·reporter 완성, 슬래시 커맨드 연동","https://devil-elora.github.io/inyours-dashboard/","","","GitHub Pages",6,6,false,"살아있음",true,"2026-08-25",85,"2026-08-30",0,"해당없음","사내용",0,0,"로컬 실행","Python","미확인","미확인","미확인",""],
+ [38,"서울대 영어교육과 대학원 준비실","E","개인","doing",1,"80%","개념카드 135장·간격반복·6단계 로드맵 구현됨. 배포만 남음","","","","",0,0,false,"미배포",null,"",70,"2026-09-08",null,"해당없음","사내용",0,0,"본인 학습용","JavaScript / React / HTML","미확인","미확인","미확인",""],
+ [28,"AMPS","F","부업","wait",8,"50%","곡 관리·선별·렌더링, 유튜브 API, 성과 분석","","","","",0,0,false,"미배포",null,"",null,"",null,"미출시","광고대행",0,0,"유튜브 채널 수익 · 렌더링 비용 발생 예정","미확인","미확인","미확인","미확인",""],
+ [29,"할 일 관리 앱","F","판매용 (보류)","wait",18,"40%","일정에만 등록. 착수하지 않음. Phase 1(뼈대 3화면·276줄) 완료 · Phase 2~6 남음 (Supabase+RLS / AI 분해 Edge Function / 일정배치·알림 / RevenueCat 결제 / 스토어 출시)","","착수 보류","","",1,1,false,"미배포",null,"",15,"2027-03-11",0,"미출시","구독",0,0,"RevenueCat 인앱결제 예정 · 스토어 수수료 30% · Supabase","React+TS / JavaScript / TypeScript","Supabase(예정)","Claude(Edge Function 경유)","미확인","앱에서 직접 호출 금지"],
+ [30,"Score (음악→악보)","G","개인","hold",10,"35%","오디오 분석, 음정·박자 추출, 악보 렌더링","","","https://github.com/devil-elora/music-to-score","",1,0,false,"미배포",null,"",25,"2027-01-12",18,"미출시","미정",0,0,"보류","Python / HTML","미확인","미확인","미확인",""],
+ [31,"CTA / 내 동네 시티 3D","G","개인","hold",104,"5%","엔진 선택, 3D 에셋, 물리·AI, 최적화, 스팀 심사","","","","",0,0,false,"미배포",null,"",20,"2026-11-03",null,"미출시","미정",0,0,"보류 · 스팀 출시 시 수수료 30%","JavaScript / HTML / CSS","미확인","미확인","미확인",""],
+ [32,"기억해","H","개인","wait",0,"?","무엇을 하는 프로그램인지 확인 — 폴더 못 찾음","","","","",0,0,false,"미배포",null,"",null,"",null,"미출시","미정",0,0,"","미확인","미확인","미확인","미확인",""],
+ [33,"게임 분석","H","개인","wait",0,"?","프로그램인지 일회성 작업인지 확인 — 폴더 못 찾음","","","","",0,0,false,"미배포",null,"",null,"",null,"미출시","미정",0,0,"","미확인","미확인","미확인","미확인",""],
 ];
 const PCAT={"A": "배포 완료", "B": "라이브 · 마무리만", "C": "사업 트랙 (애드팀인)", "D": "교재 트랙 (가윤T)", "E": "판매 도구", "F": "기획 · 착수 전", "G": "보류", "H": "정보 미확인 · 중복 확인 필요", "I": "미분류 · 새로 발견됨"};
+const ACCOUNTS=[{"service": "GitHub", "account": "devil-elora (devil.elora@gmail.com)", "plan": "무료", "status": "정상", "note": "모든 저장소. 커밋 author 도 이 계정으로 통일"}, {"service": "Supabase", "account": "devil-elora", "plan": "무료", "status": "⚠️ 슬롯 꽉 참", "note": "말하면 + VISMATE 가 차지. 신규 프로젝트를 못 만든다"}, {"service": "Supabase", "account": "yoonreka", "plan": "무료", "status": "여유 있을 수 있음", "note": "무지개 우체국이 여기. 남은 슬롯 확인 필요"}, {"service": "Vercel", "account": "미확인", "plan": "무료 추정", "status": "미확인", "note": "말하면·작사공방·출제엔진·지원레이더가 여기. 계정 확인 필요"}, {"service": "Cloudflare", "account": "미확인", "plan": "무료 추정", "status": "미확인", "note": "응징 대작전·DBLV·사내 관제. ⛔홍콩 엣지라 Gemini/Anthropic 차단됨"}, {"service": "Google AI (Gemini)", "account": "미확인", "plan": "종량", "status": "🚫 결제 차단 403", "note": "2026-08-22부터. 단일 키라 대체 경로 없음. 4개 프로젝트가 멈춤"}, {"service": "Anthropic", "account": "미확인", "plan": "미확인", "status": "미확인", "note": "DBLV 프록시가 사용. 별도 키인지 BYOK 인지 확인 필요"}, {"service": "토스페이먼츠", "account": "미확인", "plan": "-", "status": "미연동", "note": "ip-helper 판매용으로 확정. 사업자등록 보유"}, {"service": "도메인 등록기관", "account": "미확인", "plan": "-", "status": "미확인", "note": "vismate.co.kr · vismate.online. 새 도메인 구매 예정"}];
 /* DEVHUB:PROJECTS:END */
 
 // [구분, 사업명, 주관, 자격, 금액, 시기, 대응단위, 확실도, 메모]
@@ -490,9 +517,9 @@ let CANSAVE=true;
 try{localStorage.setItem(KEY+"-t","1");localStorage.removeItem(KEY+"-t")}catch(e){CANSAVE=false}
 let S=load();
 function load(){
-  if(!CANSAVE)return{p:{},f:{},pr:{},dep:{}};
-  try{return Object.assign({p:{},f:{},pr:{},dep:{}},JSON.parse(localStorage.getItem(KEY))||{})}
-  catch(e){return{p:{},f:{},pr:{},dep:{}}}
+  if(!CANSAVE)return{p:{},f:{},pr:{},dep:{},biz:{}};
+  try{return Object.assign({p:{},f:{},pr:{},dep:{},biz:{}},JSON.parse(localStorage.getItem(KEY))||{})}
+  catch(e){return{p:{},f:{},pr:{},dep:{},biz:{}}}
 }
 function save(){
   if(CANSAVE){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){CANSAVE=false;warnNoSave()}}
@@ -533,13 +560,13 @@ function impJSON(el){
 }
 function resetAll(){
   if(!confirm("체크·상태를 전부 지웁니다. 계속할까요?"))return;
-  S={p:{},f:{},pr:{},dep:{}}; save(); renderAll(); toast("초기화했습니다");
+  S={p:{},f:{},pr:{},dep:{},biz:{}}; save(); renderAll(); toast("초기화했습니다");
 }
 
 /* ══════════════════════════════════════════════════════════════
    3) 렌더링
    ══════════════════════════════════════════════════════════════ */
-const TABS=[["dash","대시보드",""],["proj","프로젝트",P.length],["dep","배포",""],["link","주소",""],
+const TABS=[["dash","대시보드",""],["proj","프로젝트",P.length],["dep","배포",""],["biz","수익",""],["env","환경",""],["link","주소",""],
             ["fund","지원사업",F.length],["unit","신청 단위",6],
             ["prep","준비물",PREP.length],["cal","캘린더",8]];
 document.getElementById("nav").innerHTML=TABS.map((t,i)=>
@@ -654,6 +681,10 @@ function link(u,label){
 
 
 // ── 배포 탭 ────────────────────────────────────────────────
+const RELEASE=["출시함","비공개베타","미출시","해당없음","미확인"];
+const RCLS={"출시함":"live","비공개베타":"doing","미출시":"wait","해당없음":"hold","미확인":"no"};
+const rel=x=>(S.dep[x[1]]&&S.dep[x[1]].release)||x[21];
+function setRel(id,v){const n=pname(id);S.dep[n]=Object.assign({checks:{}},S.dep[n],{release:v});save();rDep();rDepStats();rBiz();rBizStats()}
 const DSTAGE=["미배포","빌드있음","설정완료","배포됨","살아있음"];
 const DCHECK=["도메인 연결","환경변수 등록","HTTPS 확인","크론·예약작업","에러 모니터링","실기기 확인"];
 const dstage=x=>(S.dep[x[1]]&&S.dep[x[1]].stage)||x[15];
@@ -678,6 +709,7 @@ function rDepStats(){
      <div class="sub" style="margin-top:7px;color:var(--tx3)">${dead?"주소는 있는데 안 열립니다":"전부 정상"}</div></div>
    <div class="card"><h3>배포 직전</h3><div class="big">${ready}</div>
      <div class="sub" style="margin-top:7px;color:var(--tx3)">설정·빌드는 됐고 주소만 없음</div></div>
+   <div class="card"><h3>출시함</h3><div class="big">${P.filter(x=>rel(x)==="출시함").length}<small>/ ${P.filter(x=>rel(x)!=="해당없음").length}</small></div><div class="sub" style="margin-top:7px;color:var(--gold)">${P.filter(x=>rel(x)==="미확인").length}개 미확인</div></div>
    <div class="card"><h3>배포 체크리스트</h3><div class="big">${done}<small>/ ${total}</small></div>
      ${segbar(Math.round(done/total*100))}</div>`;
 }
@@ -686,7 +718,7 @@ function rDep(){
   const rows=P.filter(x=>x[8]||x[15]!=="미배포").sort((a,b)=>
     DSTAGE.indexOf(dstage(b))-DSTAGE.indexOf(dstage(a))||a[0]-b[0]);
   let h=`<tr><th style="width:34px">#</th><th style="width:210px">프로젝트</th>
-     <th style="width:118px">내가 정한 단계</th><th style="width:104px">자동감지</th>
+     <th style="width:118px">내가 정한 단계</th><th style="width:104px">출시</th><th style="width:96px">자동감지</th>
      <th style="width:74px">응답</th><th style="width:96px">처음 배포</th>
      <th>배포 체크리스트</th></tr>`;
   rows.forEach(x=>{
@@ -699,6 +731,9 @@ function rDep(){
       <td><span class="nm">${x[1]}</span>${link(x[8])}</td>
       <td><select onchange="setDStage(${x[0]},this.value)">
         ${DSTAGE.map(d=>`<option value="${d}"${cur===d?" selected":""}>${d}</option>`).join("")}
+      </select></td>
+      <td><select onchange="setRel(${x[0]},this.value)">
+        ${RELEASE.map(o=>`<option${rel(x)===o?" selected":""}>${o}</option>`).join("")}
       </select></td>
       <td>${diff?`<span class="b wait">${x[15]}</span>`:`<span style="color:var(--tx3);font-size:11px">${x[15]}</span>`}</td>
       <td>${alive}</td>
@@ -719,6 +754,96 @@ function rDep(){
         <span style="color:var(--tx3);font-size:11px">${x[11]||""}</span></div>`).join("")
    : '<div style="color:var(--tx3);font-size:12px">아직 이력이 없습니다. '
      +'<code>python devhub.py scan</code> 을 돌릴 때마다 배포 상태가 바뀌면 여기 쌓입니다.</div>';
+}
+
+
+// ── 수익 탭 ────────────────────────────────────────────────
+const MODELS=["구독","단건판매","광고대행","외주","무료","사내용","미정"];
+const won=n=>(n||0).toLocaleString("ko-KR");
+const bget=(x,k)=>{const o=S.biz[x[0]]||{};return o[k]!==undefined?o[k]:(k==="model"?x[22]:k==="mrr"?x[23]:x[24])};
+function setBiz(id,k,v){
+  const o=Object.assign({},S.biz[id]||{}); o[k]=(k==="model"?v:(parseInt(String(v).replace(/[^0-9-]/g,""))||0));
+  S.biz[id]=o; save(); rBizStats(); rBiz();
+}
+function rBizStats(){
+  const mrr=P.reduce((s,x)=>s+bget(x,"mrr"),0), cost=P.reduce((s,x)=>s+bget(x,"cost"),0);
+  const paid=P.filter(x=>["구독","단건판매","광고대행","외주"].includes(bget(x,"model"))).length;
+  const undecided=P.filter(x=>bget(x,"model")==="미정").length;
+  const net=mrr-cost;
+  document.getElementById("bizstats").innerHTML=`
+   <div class="card"><h3>월 매출</h3><div class="big">${won(mrr)}<small>원</small></div>
+     <div class="sub" style="margin-top:7px;color:var(--tx3)">${mrr?"":"아직 입력 전"}</div></div>
+   <div class="card"><h3>월 유지비</h3><div class="big">${won(cost)}<small>원</small></div>
+     <div class="sub" style="margin-top:7px;color:var(--tx3)">대부분 무료 티어</div></div>
+   <div class="card"><h3>월 순익</h3>
+     <div class="big" style="color:${net>0?"var(--volt)":net<0?"var(--heat)":"var(--tx)"}">${won(net)}<small>원</small></div>
+     <div class="sub" style="margin-top:7px;color:var(--tx3)">매출 − 유지비</div></div>
+   <div class="card"><h3>돈 버는 구조</h3><div class="big">${paid}<small>/ ${P.length}</small></div>
+     <div class="sub" style="margin-top:7px;color:${undecided?"var(--gold)":"var(--tx3)"}">
+       ${undecided?undecided+"개는 모델 미정":"전부 정해짐"}</div></div>`;
+}
+let bf="수익형";
+function rBiz(){
+  const groups={"수익형":x=>["구독","단건판매","광고대행","외주"].includes(bget(x,"model")),
+                "사내·무료":x=>["사내용","무료"].includes(bget(x,"model")),
+                "미정":x=>bget(x,"model")==="미정","전체":()=>true};
+  document.getElementById("bfil").innerHTML=Object.keys(groups).map(k=>
+    `<button class="chip${bf===k?" on":""}" onclick="bf='${k}';rBiz()">${k}</button>`).join("");
+  const rows=P.filter(groups[bf]).sort((a,b)=>bget(b,"mrr")-bget(a,"mrr")||a[0]-b[0]);
+  let h=`<tr><th style="width:34px">#</th><th style="width:210px">프로젝트</th>
+     <th style="width:104px">수익 모델</th><th style="width:118px">월 매출</th>
+     <th style="width:118px">월 유지비</th><th style="width:96px">월 순익</th>
+     <th style="width:88px">출시</th><th>비용 내역</th></tr>`;
+  rows.forEach(x=>{
+    const m=bget(x,"mrr"),c=bget(x,"cost"),n=m-c;
+    h+=`<tr><td style="color:var(--tx3)">${x[0]}</td>
+      <td><span class="nm">${x[1]}</span>${link(x[8])}</td>
+      <td><select onchange="setBiz(${x[0]},'model',this.value)">
+        ${MODELS.map(o=>`<option${bget(x,"model")===o?" selected":""}>${o}</option>`).join("")}
+      </select></td>
+      <td><input type="text" inputmode="numeric" value="${won(m)}"
+          onchange="setBiz(${x[0]},'mrr',this.value)" style="text-align:right"></td>
+      <td><input type="text" inputmode="numeric" value="${won(c)}"
+          onchange="setBiz(${x[0]},'cost',this.value)" style="text-align:right"></td>
+      <td class="num" style="text-align:right;color:${n>0?"var(--volt)":n<0?"var(--heat)":"var(--tx3)"}">${won(n)}</td>
+      <td><span class="b ${RCLS[x[21]]||"hold"}">${x[21]}</span></td>
+      <td><span class="mt" style="margin:0">${x[25]||""}</span></td></tr>`;
+  });
+  document.getElementById("btable").innerHTML=h;
+}
+
+
+// ── 환경 탭 ────────────────────────────────────────────────
+function rAcc(){
+  let h=`<tr><th style="width:150px">서비스</th><th style="width:210px">계정</th>
+     <th style="width:90px">요금제</th><th style="width:130px">상태</th><th>막히면 멈추는 것</th></tr>`;
+  ACCOUNTS.forEach(a=>{
+    const bad=/🚫/.test(a.status), warn=/⚠️/.test(a.status), unk=/미확인/.test(a.status);
+    h+=`<tr><td><span class="nm">${a.service}</span></td>
+      <td class="num" style="font-size:11.5px">${a.account}</td>
+      <td style="color:var(--tx2);font-size:11.5px">${a.plan}</td>
+      <td><span class="b ${bad?"no":warn?"wait":unk?"hold":"live"}">${a.status}</span></td>
+      <td><span class="mt" style="margin:0">${a.note}</span></td></tr>`;
+  });
+  document.getElementById("acctable").innerHTML=h;
+}
+function rEnv(){
+  let h=`<tr><th style="width:34px">#</th><th style="width:200px">프로젝트</th>
+     <th style="width:118px">플랫폼</th><th style="width:150px">언어</th>
+     <th style="width:130px">DB</th><th style="width:130px">AI</th>
+     <th style="width:100px">호스팅 계정</th><th>주의</th></tr>`;
+  const unk=v=>v==="미확인"?'<span style="color:var(--tx3)">미확인</span>':v;
+  P.slice().sort((a,b)=>(a[26]==="미확인")-(b[26]==="미확인")||a[0]-b[0]).forEach(x=>{
+    h+=`<tr><td style="color:var(--tx3)">${x[0]}</td>
+      <td><span class="nm">${x[1]}</span></td>
+      <td>${x[11]?`<span class="b doing">${x[11]}</span>`:unk("미확인")}</td>
+      <td class="num" style="font-size:11px">${unk(x[26])}</td>
+      <td style="font-size:11.5px">${unk(x[27])}</td>
+      <td style="font-size:11.5px">${unk(x[28])}</td>
+      <td class="num" style="font-size:11px">${unk(x[29])}</td>
+      <td><span class="mt" style="margin:0;${x[30]?"color:var(--gold)":""}">${x[30]||""}</span></td></tr>`;
+  });
+  document.getElementById("etable").innerHTML=h;
 }
 
 // ── 주소 탭 — 들어가볼 수 있는 곳만 모아서 보여준다
@@ -830,7 +955,7 @@ function rCal(){
    </div>`).join("");
 }
 
-function renderAll(){rBlockers();rStats();rMonth();rQuick();rProj();rDepStats();rDep();rLinks();rFund();rUnits();rPrep();rCal()}
+function renderAll(){rBlockers();rStats();rMonth();rQuick();rProj();rDepStats();rDep();rBizStats();rBiz();rAcc();rEnv();rLinks();rFund();rUnits();rPrep();rCal()}
 renderAll(); stamp();
 if(!CANSAVE) warnNoSave();   // 저장이 처음부터 막힌 환경이면 바로 알려준다
 </script>
